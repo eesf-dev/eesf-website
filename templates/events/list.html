@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block title %}Events · {{ config.title }}{% endblock title %}
+
+{% block content %}
+<section class="block">
+  <div class="wrap">
+    <p class="eyebrow"><a href="{{ get_url(path="@/_index.md") }}">&larr; {{ config.extra.brand_short }}</a></p>
+    <h1 style="margin-top: 10px;">All events</h1>
+    <div class="events-list" style="margin-top: 28px;">
+      {% for event in section.pages | sort(attribute="extra.date") %}
+      <div class="event{% if event.extra.featured %} featured{% endif %}">
+        <div class="when">
+          {{<event_date date={event.extra.date} style="badge"/>}}
+        </div>
+        <div class="body">
+          <h3><a href="{{ event.permalink }}">{{ event.title }}</a></h3>
+          <div class="meta">
+            <span>&#128205; {{ event.extra.location }}</span>
+            <span>&#128337; {{ event.extra.time }}</span>
+          </div>
+        </div>
+        <div class="action">
+          {% if event.extra.status == "open" %}
+          <span class="status open">RSVP open</span>
+          {% else %}
+          <span class="status soon">Details soon</span>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

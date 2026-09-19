@@ -1,0 +1,32 @@
+[doctor]
+checks = [
+  { check = "homebrew" },
+]
+
+[test]
+checks = [
+  { name = "Build site", shell = "zola build" },
+]
+
+[audit]
+checks = [
+  { name = "Check internal links", shell = "zola check --skip-external-links" },
+]
+
+[outdated]
+checks = [
+]
+
+[update]
+steps = [
+  { step = "git", command = "pull" },
+  { doctor = {} },
+]
+
+[shipit]
+steps = [
+  { audit = {} },
+  { update = {} },
+  { test = {} },
+  { step = "git", command = "push" },
+]

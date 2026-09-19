@@ -1,0 +1,35 @@
+# EESF — Erlang Ecosystem San Francisco Bay Area
+# Update base_url to your real domain before deploying.
+base_url = "https://eesf.dev"
+title = "Erlang Ecosystem SF Bay"
+description = "Erlang Ecosystem SF is the Bay Area’s community for everyone interested in the BEAM ecosystem languages (Erlang, Elixir, Gleam, etc.)"
+default_language = "en"
+
+compile_sass = false
+build_search_index = false
+generate_feeds = true
+# Feed(s) available at /rss.xml (and /atom.xml if you add that filename too).
+feed_filenames = ["rss.xml"]
+
+[markdown]
+smart_punctuation = true
+
+[extra]
+brand_short = "EESF"
+brand_full = "Erlang Ecosystem San Francisco"
+organizer_email = "hello@eesf.dev"
+stats = [
+    { num = "36", label = "meetups so far" },
+    { num = "~65", label = "folks per meetup" },
+    { num = "3rd Wed", label = "every month" },
+    { num = "2019", label = "gathering since" },
+]
+topics = [
+    "Erlang/OTP",
+    "Elixir & Phoenix",
+    "Gleam",
+    "Distributed systems",
+    "Fault tolerance",
+    "BEAM internals",
+    "Telecom & infra",
+]

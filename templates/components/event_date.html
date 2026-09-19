@@ -1,0 +1,27 @@
+{#- Renders an event's `extra.date`, which may be a full date ("2026-10-21"),
+    a year and month ("2026-10"), or "TBD". Anything else fails the build.
+
+    style="badge": two-line badge for event cards (small label, large value)
+    style="long":  prose, e.g. "October 21, 2026", "October 2026", "Date TBD" -#}
+{% component event_date(date: string, style: string) %}
+{%- set d = date | str -%}
+{%- if d == "TBD" -%}
+  {%- if style == "badge" -%}
+  <span class="mon">Date</span>
+  <span class="day">TBD</span>
+  {%- else -%}Date TBD{%- endif -%}
+{%- elif d is matching(pat="^[0-9]{4}-[0-9]{2}$") -%}
+  {%- set first = d ~ "-01" -%}
+  {%- if style == "badge" -%}
+  <span class="mon">{{ first | date(format="%b %Y") }}</span>
+  <span class="day">TBD</span>
+  {%- else -%}{{ first | date(format="%B %Y") }}{%- endif -%}
+{%- elif d is matching(pat="^[0-9]{4}-[0-9]{2}-[0-9]{2}$") -%}
+  {%- if style == "badge" -%}
+  <span class="mon">{{ d | date(format="%b") }}</span>
+  <span class="day">{{ d | date(format="%-d") }}</span>
+  {%- else -%}{{ d | date(format="%B %-d, %Y") }}{%- endif -%}
+{%- else -%}
+  {{ throw(message="Event date must be YYYY-MM-DD, YYYY-MM, or \"TBD\"; got \"" ~ d ~ "\"") }}
+{%- endif -%}
+{% endcomponent event_date %}

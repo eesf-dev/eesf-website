@@ -1,0 +1,51 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% set events_section = get_section(path="events/_index.md") %}
+
+<div class="wrap hero">
+  <div>
+    <h1><span class="accent-word">EESF</span> — the community for the San Francisco Bay Area’s Erlang ecosystem.</h1>
+  </div>
+</div>
+
+<section class="block" id="events">
+  <div class="wrap">
+    <div class="events-head">
+      <div>
+        <h2>Upcoming Events</h2>
+      </div>
+    </div>
+
+    <div>
+      <p>Interested in speaking or hosting? Contact us at <a href="mailto:{{ config.extra.organizer_email }}">{{ config.extra.organizer_email }}</a></p>
+    </div>
+
+    <div class="events-list">
+      {% for event in events_section.pages | sort(attribute="extra.date") %}
+      <div class="event{% if event.extra.featured %} featured{% endif %}">
+        <div class="when">
+          {{<event_date date={event.extra.date} style="badge"/>}}
+        </div>
+        <div class="body">
+          <h3><a href="{{ event.permalink }}">{{ event.title }}</a></h3>
+          <div class="meta">
+            <span>&#128205; {{ event.extra.location }}</span>
+            <span>&#128337; {{ event.extra.time }}</span>
+          </div>
+          <p class="desc">{{ event.summary | default(value=event.content | striptags | truncate(length=220)) | safe }}</p>
+        </div>
+        <div class="action">
+          {% if event.extra.status == "open" %}
+          <span class="status open">RSVP open</span>
+          {% else %}
+          <span class="status soon">Details soon</span>
+          {% endif %}
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% endblock content %}
