@@ -1,8 +1,8 @@
 # EESF — Erlang Ecosystem San Francisco Bay Area
 # Update base_url to your real domain before deploying.
 base_url = "https://eesf.dev"
-title = "Erlang Ecosystem SF Bay"
-description = "Erlang Ecosystem SF is the Bay Area’s community for everyone interested in the BEAM ecosystem languages (Erlang, Elixir, Gleam, etc.)"
+title = "Erlang Ecosystem SF"
+description = "A list of events related to the Erlang ecosystem (Erlang, Elixir, Gleam, etc.) in the San Francisco Bay Area"
 default_language = "en"
 
 compile_sass = false
