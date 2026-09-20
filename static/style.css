@@ -2,6 +2,7 @@
   color-scheme: light dark;
   --bg: #fbf8f4;
   --bg-elevated: #ffffff;
+  --bg-sunken: #f3efe7;
   --text: #292420;
   --text-dim: #6f665b;
   --accent: #e8592f;
@@ -19,6 +20,7 @@
   :root {
     --bg: #1c1814;
     --bg-elevated: #262019;
+    --bg-sunken: #17130f;
     --text: #f3ede3;
     --text-dim: #b8ac9a;
     --accent: #ff9166;
@@ -66,16 +68,26 @@ h2 { line-height: 1.1; }
 
 /* ---------- Hero ---------- */
 .hero {
-  padding-block: 52px 44px;
+  background: var(--bg-sunken);
+  border-bottom: 1px solid var(--border);
+  padding-block: 44px;
 }
+/* the section under the hero matches the hero's own padding, so the divider
+   sits an equal distance from the text above and below it. text-box trimming
+   drops the half-leading above the caps and below the baseline, so the gaps
+   you see match the padding instead of running ~8px larger at the top. */
+.hero + .block { padding-top: 44px; }
+.hero h1 { text-box: trim-start cap alphabetic; }
+.hero h2 { text-box: trim-end cap alphabetic; }
+.hero + .block h2 { text-box: trim-start cap alphabetic; }
 @media (max-width: 760px) {
-  .hero { padding-block: 34px 30px; }
+  .hero { padding-block: 30px; }
+  .hero + .block { padding-top: 30px; }
 }
 .hero h1 {
   font-weight: 700;
   font-size: clamp(30px, 4.8vw, 46px);
   line-height: 1.12;
-  margin-top: 10px;
 }
 .hero h1 .accent-word { color: var(--accent); }
 .btn {
@@ -100,7 +112,6 @@ section.block + section.block { border-top: 1px solid var(--border); }
 .block h2 {
   font-size: clamp(23px, 3vw, 29px);
   font-weight: 700;
-  margin-top: 8px;
 }
 .block .intro {
   color: var(--text-dim);
