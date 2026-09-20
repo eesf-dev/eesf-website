@@ -201,55 +201,6 @@ nav.links a:hover { color: var(--accent); }
 .btn-ghost { background: var(--bg-elevated); color: var(--text); border-color: var(--border-strong); }
 .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
 
-.beam {
-  aspect-ratio: 4 / 3;
-  border: 1px solid var(--border);
-  border-radius: 20px;
-  background: var(--bg-elevated);
-  box-shadow: var(--shadow);
-  position: relative;
-  overflow: hidden;
-}
-.beam canvas { width: 100%; height: 100%; display: block; }
-.beam .caption {
-  position: absolute;
-  left: 16px;
-  bottom: 14px;
-  font-size: 12.5px;
-  font-weight: 500;
-  color: var(--text-faint);
-}
-
-/* ---------- Stat strip ---------- */
-.stats {
-  border-top: 1px solid var(--border);
-  border-bottom: 1px solid var(--border);
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-}
-.stats div {
-  padding: 18px 4px;
-  text-align: center;
-  border-left: 1px solid var(--border);
-}
-.stats div:first-child { border-left: none; }
-.stats .num {
-  font-family: var(--display);
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--accent);
-  font-variant-numeric: tabular-nums;
-}
-.stats .lbl {
-  font-size: 12.5px;
-  color: var(--text-faint);
-  margin-top: 3px;
-}
-@media (max-width: 560px) {
-  .stats { grid-template-columns: repeat(2, 1fr); }
-  .stats div:nth-child(3) { border-left: none; }
-}
-
 /* ---------- Section shell ---------- */
 section.block { padding-block: 56px; }
 section.block + section.block { border-top: 1px solid var(--border); }

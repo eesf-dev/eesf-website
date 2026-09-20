@@ -16,18 +16,6 @@
     {% block content %}{% endblock content %}
   </main>
 
-  <footer>
-    <div class="wrap">
-      <div class="foot-grid">
-        <div class="brand">{{ config.extra.brand_short }}</div>
-        <div class="foot-links">
-          <a href="{{ get_url(path="rss.xml") }}">RSS</a>
-          <a href="mailto:{{ config.extra.organizer_email }}">Contact</a>
-        </div>
-      </div>
-    </div>
-  </footer>
-
   <script src="{{ get_url(path="theme.js") }}"></script>
   <script src="{{ get_url(path="procs.js") }}"></script>
 </body>
