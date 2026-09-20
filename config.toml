@@ -2,7 +2,7 @@
 # Update base_url to your real domain before deploying.
 base_url = "https://eesf.dev"
 title = "Erlang Ecosystem SF"
-description = "A list of events related to the Erlang ecosystem (Erlang, Elixir, Gleam, etc.) in the San Francisco Bay Area"
+description = "A list of events in the San Francisco Bay Area related to the Erlang ecosystem (Erlang, Elixir, Gleam, etc.)"
 default_language = "en"
 
 compile_sass = false
