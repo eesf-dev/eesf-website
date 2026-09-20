@@ -10,22 +10,20 @@
   </div>
 </div>
 
-<section class="block">
-  <div class="wrap">
-    <p>
-      Interested in speaking or hosting?
-      Have ideas for events or locations?
-      Contact us at <a href="mailto:{{ config.extra.organizer_email }}">{{ config.extra.organizer_email }}</a>.
-    </p>
-  </div>
-</section>
-
 <section class="block" id="events">
   <div class="wrap">
     <div class="events-head">
       <div>
         <h2>Upcoming Events</h2>
-        <p>Stay up to date by subscribing to our <a href="{{ get_url(path="rss.xml") }}">RSS feed</a>.</p>
+        <div>
+          Interested in speaking or hosting?
+          Have ideas for events or locations?
+          Contact us at <a href="mailto:{{ config.extra.organizer_email }}">{{ config.extra.organizer_email }}</a>.
+        </div>
+
+        <div>
+          Stay up to date by subscribing to our <a href="{{ get_url(path="rss.xml") }}">RSS feed</a>.
+        </div>
 
       </div>
     </div>
