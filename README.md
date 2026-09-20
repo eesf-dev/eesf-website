@@ -93,8 +93,8 @@ content/
     _index.md          Events section config (enables the /events/ feed too)
     *.md                One file per event
 templates/
-  base.html            Shared header/footer/theme-toggle/RSS link
-  index.html            Homepage: hero, about, events, join
+  base.html            Shared page shell (head, RSS link, content block)
+  index.html            Homepage: hero, contact, events
   events/
     list.html            /events/ — all events
     page.html             Single event detail page
@@ -103,15 +103,12 @@ templates/
   rss.xml               Feed listing every event (Zola's default skips undated pages)
 static/
   style.css             All page styles (light + dark)
-  theme.js               Light/dark toggle (session-only, not persisted)
-  procs.js                Decorative hero canvas animation
 ```
 
 ## Notes
 
-- The light/dark toggle in the header overrides your system preference for
-  the current page load only — it's meant as a quick way to preview both
-  themes while editing, not a saved user preference.
+- Light and dark themes follow the visitor's system preference via
+  `prefers-color-scheme`; there's no in-page toggle.
 - `generate_feeds = true` in `config.toml` produces `/rss.xml` (site-wide)
   and, because `content/events/_index.md` also sets `generate_feeds = true`,
   `/events/rss.xml` (events only). Point people at whichever one fits.

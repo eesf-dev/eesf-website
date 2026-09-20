@@ -18,18 +18,3 @@ smart_punctuation = true
 brand_short = "EESF"
 brand_full = "Erlang Ecosystem San Francisco"
 organizer_email = "hello@eesf.dev"
-stats = [
-    { num = "36", label = "meetups so far" },
-    { num = "~65", label = "folks per meetup" },
-    { num = "3rd Wed", label = "every month" },
-    { num = "2019", label = "gathering since" },
-]
-topics = [
-    "Erlang/OTP",
-    "Elixir & Phoenix",
-    "Gleam",
-    "Distributed systems",
-    "Fault tolerance",
-    "BEAM internals",
-    "Telecom & infra",
-]
