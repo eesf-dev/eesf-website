@@ -93,8 +93,8 @@ content/
     _index.md          Events section config (enables the /events/ feed too)
     *.md                One file per event
 templates/
-  base.html            Shared page shell (head, RSS link, content block)
-  index.html            Homepage: hero, contact, events
+  base.html            Shared page shell: head, RSS link, site header
+  index.html            Homepage: intro, contact, events
   events/
     list.html            /events/ — all events
     page.html             Single event detail page

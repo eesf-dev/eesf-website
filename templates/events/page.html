@@ -5,13 +5,13 @@
 
 {% block content %}
 <section class="block">
-  <div class="wrap" style="max-width: 720px;">
+  <div class="wrap">
     <p class="eyebrow"><a href="{{ get_url(path="@/_index.md") }}#events">&larr; Upcoming events</a></p>
     <h1 style="margin-top: 10px; font-size: clamp(24px, 4vw, 34px);">{{ page.title }}</h1>
-    <div style="margin-top: 14px;">
-      <span>&#128197; {{<event_date date={page.extra.date} style="long"/>}}</span>
-      <span>&#128337; {{ page.extra.time }}</span>
-      <span>&#128205; {{ page.extra.location }}</span>
+    <div class="meta" style="margin-top: 14px;">
+      <span><span class="icon icon-calendar" aria-hidden="true"></span>{{<event_date date={page.extra.date} style="long"/>}}</span>
+      <span><span class="icon icon-clock" aria-hidden="true"></span>{{ page.extra.time }}</span>
+      <span><span class="icon icon-map-pin" aria-hidden="true"></span>{{ page.extra.location }}</span>
     </div>
     <div class="intro" style="margin-top: 22px;">{{ page.content | safe }}</div>
     {% if page.extra.status == "open" %}

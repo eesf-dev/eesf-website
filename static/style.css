@@ -66,30 +66,33 @@ h2 { line-height: 1.1; }
   color: var(--accent);
 }
 
-/* ---------- Hero ---------- */
-.hero {
+/* ---------- Site header ---------- */
+.site-header {
   background: var(--bg-sunken);
-  border-bottom: 1px solid var(--border);
   padding-block: 44px;
 }
-/* the section under the hero matches the hero's own padding, so the divider
-   sits an equal distance from the text above and below it. text-box trimming
-   drops the half-leading above the caps and below the baseline, so the gaps
-   you see match the padding instead of running ~8px larger at the top. */
-.hero + .block { padding-top: 44px; }
-.hero h1 { text-box: trim-start cap alphabetic; }
-.hero h2 { text-box: trim-end cap alphabetic; }
-.hero + .block h2 { text-box: trim-start cap alphabetic; }
-@media (max-width: 760px) {
-  .hero { padding-block: 30px; }
-  .hero + .block { padding-top: 30px; }
-}
-.hero h1 {
+.site-title {
+  display: block;
+  width: fit-content;
+  font-family: var(--display);
   font-weight: 700;
   font-size: clamp(30px, 4.8vw, 46px);
   line-height: 1.12;
+  color: var(--accent);
+  text-decoration: none;
 }
-.hero h1 .accent-word { color: var(--accent); }
+/* The first section under the header uses the header's padding, so the space
+   above the title, below it, and above the page's first text all match.
+   text-box trimming drops the half-leading above the caps and below the
+   baseline, so the gaps you see match the padding instead of running ~8px
+   larger at the top. */
+main > .block:first-child { padding-top: 44px; }
+.site-title { text-box: trim-both cap alphabetic; }
+main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim-start cap alphabetic; }
+@media (max-width: 760px) {
+  .site-header { padding-block: 30px; }
+  main > .block:first-child { padding-top: 30px; }
+}
 .btn {
   display: inline-flex;
   align-items: center;
@@ -122,14 +125,27 @@ section.block + section.block { border-top: 1px solid var(--border); }
 .block .intro p { margin: 0 0 12px; }
 .block .intro p:last-child { margin-bottom: 0; }
 
-/* ---------- Events ---------- */
-.events-head {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  gap: 16px;
-  flex-wrap: wrap;
+/* ---------- Icons ---------- */
+/* Tabler Icons v3.47.0 (MIT), https://tabler.io/icons. Each SVG is stored as a
+   custom property and drawn as a mask, so the icon takes the text color. */
+:root {
+  --icon-calendar: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M4 7a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-12a2 2 0 0 1 -2 -2v-12'/%3E%3Cpath d='M16 3v4'/%3E%3Cpath d='M8 3v4'/%3E%3Cpath d='M4 11h16'/%3E%3Cpath d='M11 15h1'/%3E%3Cpath d='M12 15v3'/%3E%3C/svg%3E");
+  --icon-clock: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0'/%3E%3Cpath d='M12 7v5l3 3'/%3E%3C/svg%3E");
+  --icon-map-pin: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='black' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M9 11a3 3 0 1 0 6 0a3 3 0 0 0 -6 0'/%3E%3Cpath d='M17.657 16.657l-4.243 4.243a2 2 0 0 1 -2.827 0l-4.244 -4.243a8 8 0 1 1 11.314 0'/%3E%3C/svg%3E");
 }
+.icon {
+  display: inline-block;
+  width: 1.15em;
+  height: 1.15em;
+  flex-shrink: 0;
+  background-color: currentColor;
+  mask: var(--icon) center / contain no-repeat;
+}
+.icon-calendar { --icon: var(--icon-calendar); }
+.icon-clock { --icon: var(--icon-clock); }
+.icon-map-pin { --icon: var(--icon-map-pin); }
+
+/* ---------- Events ---------- */
 .events-list {
   margin-top: 30px;
   display: flex;
@@ -166,15 +182,15 @@ section.block + section.block { border-top: 1px solid var(--border); }
 .event .body h3 { font-size: 17.5px; font-weight: 700; }
 .event .body h3 a { color: inherit; text-decoration: none; }
 .event .body h3 a:hover { color: var(--accent); }
-.event .meta {
+.meta {
   margin-top: 7px;
   display: flex;
   flex-wrap: wrap;
   gap: 4px 14px;
-  font-size: 13.5px;
+  font-size: 15px;
   color: var(--text-dim);
 }
-.event .meta span { display: inline-flex; align-items: center; gap: 6px; }
+.meta > span { display: inline-flex; align-items: center; gap: 6px; }
 .event .desc { margin-top: 8px; font-size: 14.5px; color: var(--text-dim); max-width: 56ch; }
 .status {
   font-size: 12px;
