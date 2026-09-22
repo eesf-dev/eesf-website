@@ -31,17 +31,31 @@ bin/dev/start
 This runs `zola serve` from the project root; any extra arguments are passed
 through (e.g. `bin/dev/start --port 2000`). Then open http://127.0.0.1:1111. Zola live-reloads on file changes.
 
-## Building for deploy
+## Deploying
+
+Every push to `main` builds the site and deploys it to GitHub Pages via
+`.github/workflows/deploy.yml`. You can also run it by hand from the
+repo's Actions tab ("Deploy to GitHub Pages" → "Run workflow"). The
+workflow pins the Zola version in `ZOLA_VERSION`; bump it there when you
+upgrade locally.
+
+One-time repo setup (Settings → Pages):
+
+- Source: "GitHub Actions"
+- Custom domain: `eesf.dev`, then tick "Enforce HTTPS" once the
+  certificate is issued. Point the domain's DNS at GitHub Pages (see
+  GitHub's "Managing a custom domain" docs).
+
+`base_url` in `config.toml` must match the domain the site is served
+from, since Zola uses it for absolute links and the RSS feed.
+
+To build locally without deploying:
 
 ```
 zola build
 ```
 
-Outputs the finished static site to `public/`. Upload that folder to any
-static host (Netlify, Vercel, GitHub Pages, Cloudflare Pages, S3, etc).
-
-Before deploying, set `base_url` in `config.toml` to your real domain —
-it's currently a placeholder (`https://eesf.dev`).
+This writes the finished static site to `public/`.
 
 ## Adding or editing events
 

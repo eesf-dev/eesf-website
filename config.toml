@@ -1,5 +1,5 @@
 # EESF — Erlang Ecosystem San Francisco Bay Area
-# Update base_url to your real domain before deploying.
+# base_url must match the domain GitHub Pages serves the site from.
 base_url = "https://eesf.dev"
 title = "Erlang Ecosystem SF"
 description = "A list of events in the San Francisco Bay Area related to the Erlang ecosystem (Erlang, Elixir, Gleam, etc.)"
