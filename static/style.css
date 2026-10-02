@@ -171,7 +171,8 @@ main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim
   padding-right: 18px;
 }
 @media (max-width: 680px) { .event .when { border-right: none; border-bottom: 1px solid var(--border); padding-right: 0; padding-bottom: 12px; flex-direction: row; gap: 8px; align-items: baseline; } }
-.event .when .mon { font-size: 12.5px; font-weight: 700; color: var(--accent); text-transform: uppercase; }
+.event .when .mon,
+.event .when .dow { font-size: 12.5px; font-weight: 700; color: var(--accent); text-transform: uppercase; }
 .event .when .day { font-family: var(--display); font-size: 30px; font-weight: 700; font-variant-numeric: tabular-nums; }
 .event .body h3 { font-size: 17.5px; font-weight: 700; }
 .event .body h3 a { color: inherit; text-decoration: none; }

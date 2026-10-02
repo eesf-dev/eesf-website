@@ -1,8 +1,10 @@
 {#- Renders an event's `extra.date`, which may be a full date ("2026-10-21"),
     a year and month ("2026-10"), or "TBD". Anything else fails the build.
 
-    style="badge": two-line badge for event cards (small label, large value)
-    style="long":  prose, e.g. "October 21, 2026", "October 2026", "Date TBD" -#}
+    style="badge": stacked badge for event cards — month, day, and (for a full
+                   date) the weekday
+    style="long":  prose, e.g. "Wednesday, October 21, 2026", "October 2026",
+                   "Date TBD" -#}
 {% component event_date(date: string, style: string) %}
 {%- set d = date | str -%}
 {%- if d == "TBD" -%}
@@ -20,7 +22,8 @@
   {%- if style == "badge" -%}
   <span class="mon">{{ d | date(format="%b") }}</span>
   <span class="day">{{ d | date(format="%-d") }}</span>
-  {%- else -%}{{ d | date(format="%B %-d, %Y") }}{%- endif -%}
+  <span class="dow">{{ d | date(format="%a") }}</span>
+  {%- else -%}{{ d | date(format="%A, %B %-d, %Y") }}{%- endif -%}
 {%- else -%}
   {{ throw(message="Event date must be YYYY-MM-DD, YYYY-MM, or \"TBD\"; got \"" ~ d ~ "\"") }}
 {%- endif -%}
