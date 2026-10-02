@@ -94,7 +94,7 @@ Add a new file for each meetup and it automatically shows up on the
 homepage's Upcoming Events list, gets its own page at
 `/events/<slug>/`, and is included in the RSS feeds. Old events can be
 deleted or left in place — the homepage lists whatever is in
-`content/events/`, sorted by date, with month-only dates after the
+`content/events/`, sorted by date, with month-only dates before the
 full dates in that month and TBD events last.
 
 ## Structure
@@ -113,6 +113,7 @@ templates/
     list.html            /events/ — all events
     page.html             Single event detail page
   components/
+    event_card.html       One event card, shared by the homepage and /events/
     event_date.html       Formats and validates an event's date
   rss.xml               Feed listing every event (Zola's default skips undated pages)
 static/

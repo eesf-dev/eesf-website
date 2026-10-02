@@ -18,26 +18,7 @@
 
     <div class="events-list">
       {% for event in events_section.pages | sort(attribute="extra.date") %}
-      <div class="event{% if event.extra.featured %} featured{% endif %}">
-        <div class="when">
-          {{<event_date date={event.extra.date} style="badge"/>}}
-        </div>
-        <div class="body">
-          <h3><a href="{{ event.permalink }}">{{ event.title }}</a></h3>
-          <div class="meta">
-            <span><span class="icon icon-map-pin" aria-hidden="true"></span>{{ event.extra.location }}</span>
-            <span><span class="icon icon-clock" aria-hidden="true"></span>{{ event.extra.time }}</span>
-          </div>
-          <p class="desc">{{ event.summary | default(value=event.content | striptags | truncate(length=220)) | safe }}</p>
-        </div>
-        <div class="action">
-          {% if event.extra.status == "open" %}
-          <span class="status open">RSVP open</span>
-          {% else %}
-          <span class="status soon">Details soon</span>
-          {% endif %}
-        </div>
-      </div>
+      {{<event_card event={event} desc={true}/>}}
       {% endfor %}
     </div>
   </div>

@@ -34,9 +34,8 @@
 }
 * { box-sizing: border-box; }
 
-html, body { margin: 0; }
-
 body {
+  margin: 0;
   background: var(--bg);
   color: var(--text);
   font-family: var(--body);
@@ -71,6 +70,7 @@ h2 { line-height: 1.1; }
   background: var(--bg-sunken);
   padding-block: 44px;
 }
+
 .site-title {
   display: block;
   width: fit-content;
@@ -80,14 +80,9 @@ h2 { line-height: 1.1; }
   line-height: 1.12;
   color: var(--accent);
   text-decoration: none;
+  text-box: trim-both cap alphabetic;
 }
-/* The first section under the header uses the header's padding, so the space
-   above the title, below it, and above the page's first text all match.
-   text-box trimming drops the half-leading above the caps and below the
-   baseline, so the gaps you see match the padding instead of running ~8px
-   larger at the top. */
 main > .block:first-child { padding-top: 44px; }
-.site-title { text-box: trim-both cap alphabetic; }
 main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim-start cap alphabetic; }
 @media (max-width: 760px) {
   .site-header { padding-block: 30px; }
@@ -110,8 +105,8 @@ main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim
 .btn-primary:hover { filter: brightness(1.05); }
 
 /* ---------- Section shell ---------- */
-section.block { padding-block: 56px; }
-section.block + section.block { border-top: 1px solid var(--border); }
+.block { padding-block: 56px; }
+.block + .block { border-top: 1px solid var(--border); }
 .block h2 {
   font-size: clamp(23px, 3vw, 29px);
   font-weight: 700;
@@ -120,10 +115,9 @@ section.block + section.block { border-top: 1px solid var(--border); }
   color: var(--text-dim);
   max-width: 62ch;
   margin-top: 12px;
-  font-size: 16px;
 }
-.block .intro p { margin: 0 0 12px; }
-.block .intro p:last-child { margin-bottom: 0; }
+.block .intro p { margin: 0; }
+.block .intro p + p { margin-top: 12px; }
 
 /* ---------- Icons ---------- */
 /* Tabler Icons v3.47.0 (MIT), https://tabler.io/icons. Each SVG is stored as a
@@ -165,7 +159,7 @@ section.block + section.block { border-top: 1px solid var(--border); }
 }
 .event.featured { border-color: var(--accent); box-shadow: 0 0 0 1.5px var(--accent), var(--shadow); }
 @media (max-width: 680px) {
-  .event { grid-template-columns: 1fr; text-align: left; gap: 12px; }
+  .event { grid-template-columns: 1fr; gap: 12px; }
 }
 .event .when {
   display: flex;
