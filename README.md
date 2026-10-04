@@ -67,10 +67,9 @@ Each event is a Markdown file in `content/events/`, e.g.
 title = "Talk Title Here"
 [extra]
 pub_date = 2026-12-15 # when this was announced (the RSS pubDate)
-date = "2027-01-20"   # when the event happens: "YYYY-MM-DD", "YYYY-MM", or "TBD"
+date = "2027-01-20"   # when the event happens: "YYYY-MM-DD"
 time = "6:30–9:00 PM"
 location = "Venue, City"
-status = "open"      # "open" or "soon"
 featured = false     # true highlights it on the homepage
 rsvp_url = "#"        # link to your meetup.com / Luma / etc. listing; leave blank for no button
 rsvp_site = "Meetup.com" # optional; names the site in the button: "RSVP at Meetup.com"
@@ -87,17 +86,15 @@ keys, and its own top-level `date` only accepts full dates):
   item's `pubDate` in the RSS feeds, so readers show it as new at the
   right time. Set it to the day you publish the event; if you leave it
   out, the feed item has no `pubDate`.
-- `date` is when the event happens. It can be a full date
-  (`"2027-01-20"`), just a month (`"2027-01"`) when the day isn't set
-  yet, or `"TBD"`. Any other value fails the build with an error saying
-  which value was wrong.
+- `date` is when the event happens, as a full date (`"2027-01-20"`).
+  Anything else fails the build with an error saying which value was
+  wrong, so events go up once their date is settled.
 
 Add a new file for each meetup and it automatically shows up on the
 homepage's Upcoming Events list, gets its own page at
 `/events/<slug>/`, and is included in the RSS feeds. Old events can be
 deleted or left in place — the homepage lists whatever is in
-`content/events/`, sorted by date, with month-only dates before the
-full dates in that month and TBD events last.
+`content/events/`, sorted by date.
 
 ## Structure
 

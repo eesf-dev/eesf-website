@@ -8,19 +8,15 @@
   <div class="wrap">
     <h1 style="font-size: clamp(24px, 4vw, 34px);">{{ page.title }}</h1>
     <div class="meta">
-      <span><span class="icon icon-calendar" aria-hidden="true"></span>{{<event_date date={page.extra.date} style="long"/>}}</span>
+      <span><span class="icon icon-calendar" aria-hidden="true"></span>{{<event_date date={page.extra.date}/>}}</span>
       <span><span class="icon icon-clock" aria-hidden="true"></span>{{ page.extra.time }}</span>
       <span><span class="icon icon-map-pin" aria-hidden="true"></span>{{ page.extra.location }}</span>
     </div>
     <div class="intro" style="margin-top: 22px;">{{ page.content | safe }}</div>
     <p class="actions">
       <a class="btn btn-outline" href="{{ get_url(path="@/_index.md") }}#events"><span class="icon icon-arrow-left" aria-hidden="true"></span>Back</a>
-      {%- if page.extra.status == "open" %}
-        {%- if page.extra.rsvp_url %}
+      {%- if page.extra.rsvp_url %}
       <a class="btn btn-primary" href="{{ page.extra.rsvp_url }}">RSVP{% if page.extra.rsvp_site %} at {{ page.extra.rsvp_site }}{% endif %}{% if not page.extra.rsvp_required %} (optional){% endif %}</a>
-        {%- endif %}
-      {%- else %}
-      <span class="status soon">Details soon</span>
       {%- endif %}
     </p>
   </div>

@@ -14,7 +14,7 @@
     <atom:link href="{{ feed_url | safe }}" rel="self" type="application/rss+xml"/>
     {%- for event in events_section.pages | sort(attribute="extra.date") %}
     <item>
-      <title>{{ event.title }} ({{<event_date date={event.extra.date} style="long"/>}})</title>
+      <title>{{ event.title }} ({{<event_date date={event.extra.date}/>}})</title>
       <link>{{ event.permalink | escape_xml | safe }}</link>
       <guid>{{ event.permalink | escape_xml | safe }}</guid>
       {%- if event.extra.pub_date %}

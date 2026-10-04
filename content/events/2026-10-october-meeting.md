@@ -5,7 +5,6 @@ pub_date = 2026-09-18
 date = "2026-10-14"
 time = "5pm-9pm"
 location = "Southern Pacific Brewing"
-status = "open"
 featured = true
 rsvp_url = "https://www.meetup.com/erlangelixirsf/events/316775145/"
 rsvp_site = "Meetup.com"

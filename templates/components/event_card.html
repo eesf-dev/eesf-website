@@ -5,7 +5,7 @@
       <div class="event{% if event.extra.featured %} featured{% endif %}">
         <h3><a href="{{ event.permalink }}">{{ event.title }}</a></h3>
         <div class="meta">
-          <span><span class="icon icon-calendar" aria-hidden="true"></span>{{<event_date date={event.extra.date} style="long"/>}}</span>
+          <span><span class="icon icon-calendar" aria-hidden="true"></span>{{<event_date date={event.extra.date}/>}}</span>
           <span><span class="icon icon-clock" aria-hidden="true"></span>{{ event.extra.time }}</span>
           <span><span class="icon icon-map-pin" aria-hidden="true"></span>{{ event.extra.location }}</span>
         </div>
