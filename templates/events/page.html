@@ -4,6 +4,10 @@
 {% block description %}{{ page.title }} — {{ config.extra.brand_full }}{% endblock description %}
 
 {% block content %}
+{#- Past events keep their page but lose the RSVP button. Same comparison as the
+    homepage's Upcoming/Past split: the day of the event still counts as current,
+    and the daily rebuild is what retires the button. -#}
+{% set today = now() | date(format="%Y-%m-%d") %}
 <section class="block">
   <div class="wrap">
     <h1 style="font-size: clamp(24px, 4vw, 34px);">{{ page.title }}</h1>
@@ -15,7 +19,7 @@
     <div class="intro" style="margin-top: 22px;">{{ page.content | safe }}</div>
     <p class="actions">
       <a class="btn btn-outline" href="{{ get_url(path="@/_index.md") }}#events"><span class="icon icon-arrow-left" aria-hidden="true"></span>Back</a>
-      {%- if page.extra.rsvp_url %}
+      {%- if page.extra.rsvp_url and page.extra.date >= today %}
       <a class="btn btn-primary" href="{{ page.extra.rsvp_url }}">RSVP{% if page.extra.rsvp_site %} at {{ page.extra.rsvp_site }}{% endif %}{% if not page.extra.rsvp_required %} (optional){% endif %}</a>
       {%- endif %}
     </p>

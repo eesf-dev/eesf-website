@@ -3,6 +3,10 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
+  # Rebuild daily so events move from Upcoming to Past on their own. Cron is UTC
+  # only: 13:00 UTC is 6am Pacific in summer, 5am in winter.
+  schedule:
+    - cron: "0 13 * * *"
   workflow_dispatch:
 
 permissions:
@@ -17,6 +21,10 @@ concurrency:
 
 env:
   ZOLA_VERSION: 0.23.6
+  # Zola's now() reads the machine clock, and events are Pacific-local: without
+  # this a build between 5pm and midnight PT would already be on tomorrow's date
+  # and could file that evening's event under Past while it was happening.
+  TZ: America/Los_Angeles
 
 jobs:
   build:

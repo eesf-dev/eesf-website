@@ -2,6 +2,19 @@
 
 {% block content %}
 {% set events_section = get_section(path="events/_index.md") %}
+{%- set events = events_section.pages | sort(attribute="extra.date") %}
+{#- Split the list at today, which still counts as upcoming. ISO dates compare
+    directly as strings, and the build clock is Pacific (TZ is set in the deploy
+    workflow), so an evening event stays upcoming through its own evening. The
+    daily scheduled rebuild is what carries an event across the line. -#}
+{% set today = now() | date(format="%Y-%m-%d") %}
+{% set_global has_upcoming = false %}
+{% set_global has_past = false %}
+{%- for event in events %}
+  {%- if event.extra.date >= today %}{% set_global has_upcoming = true %}
+  {%- else %}{% set_global has_past = true %}
+  {%- endif %}
+{%- endfor %}
 
 <section class="block" id="events">
   <div class="wrap">
@@ -10,12 +23,33 @@
       <a class="stacked-link" href="{{ get_url(path="rss.xml") }}">RSS<br>Feed</a>
     </div>
 
+    {%- if has_upcoming %}
     <div class="events-list">
-      {% for event in events_section.pages | sort(attribute="extra.date") %}
+      {%- for event in events %}
+      {%- if event.extra.date >= today %}
       {{<event_card event={event}/>}}
-      {% endfor %}
+      {%- endif %}
+      {%- endfor %}
     </div>
+    {%- else %}
+    <p class="intro">Nothing on the calendar right now. Subscribe to the feed and
+    you'll hear about the next one as soon as it's set.</p>
+    {%- endif %}
   </div>
 </section>
 
+{%- if has_past %}
+<section class="block" id="past-events">
+  <div class="wrap">
+    <h2>Past Events</h2>
+    <div class="events-list past">
+      {%- for event in events | reverse %}
+      {%- if event.extra.date < today %}
+      {{<event_card event={event}/>}}
+      {%- endif %}
+      {%- endfor %}
+    </div>
+  </div>
+</section>
+{%- endif %}
 {% endblock content %}

@@ -223,6 +223,25 @@ main > .block:first-child > .wrap > .section-head > h2 { text-box: trim-start ca
 .meta > span { display: inline-flex; align-items: center; gap: 6px; }
 .meta .icon { background-color: var(--accent); }
 .event .more { margin: 16px 0 0; }
+
+/* Past events: same card, dialed back — flat, dim text, no accent anywhere, and
+   the button drops to an outline so the live events keep the only filled ones. */
+.events-list.past .event {
+  background: var(--bg-sunken);
+  box-shadow: none;
+  color: var(--text-dim);
+}
+.events-list.past .event.featured { border-color: var(--border); box-shadow: none; }
+.events-list.past .event h3 a:hover { color: var(--text); }
+.events-list.past .meta { color: var(--text-dim); font-weight: 400; }
+.events-list.past .meta .icon { background-color: var(--text-dim); }
+.events-list.past .btn-primary {
+  background: none;
+  border-color: var(--border);
+  color: var(--text-dim);
+  box-shadow: none;
+}
+.events-list.past .btn-primary:hover { filter: none; background: var(--bg-elevated); color: var(--text); }
 /* Buttons at the foot of an event page: Back, then RSVP or its placeholder. */
 .actions {
   margin: 24px 0 0;

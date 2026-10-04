@@ -96,6 +96,16 @@ homepage's Upcoming Events list, gets its own page at
 deleted or left in place — the homepage lists whatever is in
 `content/events/`, sorted by date.
 
+Events whose date has passed move to a Past Events section below the
+upcoming ones, newest first, styled muted. The split happens at build
+time: the day of an event still counts as upcoming, and the deploy
+workflow rebuilds daily (13:00 UTC, so 6am Pacific in summer and 5am in
+winter) so events cross over on their own without a push. The workflow
+sets `TZ: America/Los_Angeles` because the comparison uses the build
+machine's clock — without it, a build after 5pm Pacific would already be
+on tomorrow's UTC date and could file that evening's event as past while
+it was still going on.
+
 ## Structure
 
 ```
