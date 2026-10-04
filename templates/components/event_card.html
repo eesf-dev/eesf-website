@@ -1,17 +1,14 @@
-{#- One event card, shared by the homepage and /events/. The event's own page
-    carries the description; cards just link to it. -#}
+{#- One event card, shared by the homepage and /events/. Mirrors the top of an
+    event's own page — title, the three key facts, a button — minus the
+    description, with "More Details" where that page has RSVP. -#}
 {% component event_card(event: map) %}
       <div class="event{% if event.extra.featured %} featured{% endif %}">
-        <div class="when">
-          {{<event_date date={event.extra.date} style="badge"/>}}
+        <h3><a href="{{ event.permalink }}">{{ event.title }}</a></h3>
+        <div class="meta">
+          <span><span class="icon icon-calendar" aria-hidden="true"></span>{{<event_date date={event.extra.date} style="long"/>}}</span>
+          <span><span class="icon icon-clock" aria-hidden="true"></span>{{ event.extra.time }}</span>
+          <span><span class="icon icon-map-pin" aria-hidden="true"></span>{{ event.extra.location }}</span>
         </div>
-        <div class="body">
-          <h3><a href="{{ event.permalink }}">{{ event.title }}</a></h3>
-          <div class="meta">
-            <span><span class="icon icon-map-pin" aria-hidden="true"></span>{{ event.extra.location }}</span>
-            <span><span class="icon icon-clock" aria-hidden="true"></span>{{ event.extra.time }}</span>
-          </div>
-          <p class="more"><a class="btn btn-primary" href="{{ event.permalink }}">More Details</a></p>
-        </div>
+        <p class="more"><a class="btn btn-primary" href="{{ event.permalink }}">More Details</a></p>
       </div>
 {% endcomponent event_card %}
