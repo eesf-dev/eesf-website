@@ -8,8 +8,6 @@
   --accent: #e8592f;
   --accent-ink: #ffffff;
   --accent-soft: #e8592f16;
-  --good: #2f7d4f;
-  --good-soft: #2f7d4f14;
   --border: #e8e0d3;
   --shadow: 0 1px 2px rgba(60, 40, 20, 0.04), 0 6px 20px rgba(60, 40, 20, 0.05);
   --display: "Baloo 2", "Segoe UI Rounded", var(--body);
@@ -26,8 +24,6 @@
     --accent: #ff9166;
     --accent-ink: #211208;
     --accent-soft: #ff91661e;
-    --good: #6bcf94;
-    --good-soft: #6bcf9420;
     --border: #362d23;
     --shadow: 0 1px 2px rgba(0, 0, 0, 0.25), 0 8px 24px rgba(0, 0, 0, 0.3);
   }
@@ -56,7 +52,7 @@ a { color: var(--accent); }
 a:focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
 
 h1, h2, h3 { text-wrap: balance; margin: 0; font-family: var(--display); }
-h2 { line-height: 1.1; }
+h1, h2 { line-height: 1.1; }
 
 .eyebrow {
   font-size: 13px;
@@ -148,7 +144,7 @@ main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim
 }
 .event {
   display: grid;
-  grid-template-columns: 100px 1fr auto;
+  grid-template-columns: 100px 1fr;
   gap: 22px;
   align-items: center;
   padding: 22px;
@@ -186,7 +182,7 @@ main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim
   color: var(--text-dim);
 }
 .meta > span { display: inline-flex; align-items: center; gap: 6px; }
-.event .desc { margin-top: 8px; font-size: 14.5px; color: var(--text-dim); max-width: 56ch; }
+.event .more { margin: 16px 0 0; }
 .status {
   font-size: 12px;
   font-weight: 700;
@@ -194,8 +190,4 @@ main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim
   border-radius: 999px;
   white-space: nowrap;
 }
-.status.open { color: var(--good); background: var(--good-soft); }
 .status.soon { color: var(--accent); background: var(--accent-soft); }
-
-.event .action { justify-self: end; }
-@media (max-width: 680px) { .event .action { justify-self: start; } }

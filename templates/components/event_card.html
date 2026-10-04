@@ -1,8 +1,6 @@
-{#- One event card, shared by the homepage and /events/.
-
-    desc=true adds the event's summary under the meta line (the homepage
-    shows it; the full list doesn't). -#}
-{% component event_card(event: map, desc: bool = false) %}
+{#- One event card, shared by the homepage and /events/. The event's own page
+    carries the description; cards just link to it. -#}
+{% component event_card(event: map) %}
       <div class="event{% if event.extra.featured %} featured{% endif %}">
         <div class="when">
           {{<event_date date={event.extra.date} style="badge"/>}}
@@ -13,16 +11,7 @@
             <span><span class="icon icon-map-pin" aria-hidden="true"></span>{{ event.extra.location }}</span>
             <span><span class="icon icon-clock" aria-hidden="true"></span>{{ event.extra.time }}</span>
           </div>
-          {%- if desc %}
-          <p class="desc">{{ event.content | striptags | trim | truncate(length=220) | safe }}</p>
-          {%- endif %}
-        </div>
-        <div class="action">
-          {% if event.extra.status == "open" %}
-          <span class="status open">RSVP open</span>
-          {% else %}
-          <span class="status soon">Details soon</span>
-          {% endif %}
+          <p class="more"><a class="btn btn-primary" href="{{ event.permalink }}">More Details</a></p>
         </div>
       </div>
 {% endcomponent event_card %}
