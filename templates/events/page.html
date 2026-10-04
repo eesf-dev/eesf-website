@@ -16,7 +16,9 @@
     <p class="actions">
       <a class="btn btn-outline" href="{{ get_url(path="@/_index.md") }}#events"><span class="icon icon-arrow-left" aria-hidden="true"></span>Back</a>
       {%- if page.extra.status == "open" %}
-      <a class="btn btn-primary" href="{{ page.extra.rsvp_url }}">RSVP</a>
+        {%- if page.extra.rsvp_url %}
+      <a class="btn btn-primary" href="{{ page.extra.rsvp_url }}">RSVP{% if page.extra.rsvp_site %} at {{ page.extra.rsvp_site }}{% endif %}{% if not page.extra.rsvp_required %} (optional){% endif %}</a>
+        {%- endif %}
       {%- else %}
       <span class="status soon">Details soon</span>
       {%- endif %}

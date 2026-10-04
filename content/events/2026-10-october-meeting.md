@@ -8,6 +8,7 @@ location = "Southern Pacific Brewing"
 status = "open"
 featured = true
 rsvp_url = "https://www.meetup.com/erlangelixirsf/events/316775145/"
+rsvp_site = "Meetup.com"
 +++
 
 Join us in October for a casual hangout in the Mission! Southern Pacific Brewing is at

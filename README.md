@@ -72,7 +72,9 @@ time = "6:30–9:00 PM"
 location = "Venue, City"
 status = "open"      # "open" or "soon"
 featured = false     # true highlights it on the homepage
-rsvp_url = "#"        # link to your meetup.com / Luma / etc. listing
+rsvp_url = "#"        # link to your meetup.com / Luma / etc. listing; leave blank for no button
+rsvp_site = "Meetup.com" # optional; names the site in the button: "RSVP at Meetup.com"
+rsvp_required = false # false (the default) adds "(optional)" to the button
 +++
 
 Event description goes here as normal Markdown.
