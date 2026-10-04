@@ -78,8 +78,14 @@ h1, h2 { line-height: 1.1; }
   text-decoration: none;
   text-box: trim-both cap alphabetic;
 }
+/* Tagline under the title. Trimming its half-leading too keeps the gap you see
+   equal to the margin, the way the title's own trimming does. */
+.site-header .wrap + .wrap { margin-top: 14px; text-box: trim-start cap alphabetic; }
 main > .block:first-child { padding-top: 44px; }
 main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim-start cap alphabetic; }
+/* text-box trimming only reaches text in a block container, so when the first
+   child is a flex row the heading inside it has to be trimmed instead. */
+main > .block:first-child > .wrap > .section-head > h2 { text-box: trim-start cap alphabetic; }
 @media (max-width: 760px) {
   .site-header { padding-block: 30px; }
   main > .block:first-child { padding-top: 30px; }
@@ -101,10 +107,10 @@ main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim
 .btn-primary:hover { filter: brightness(1.05); }
 
 /* ---------- Section shell ---------- */
-.block { padding-block: 56px; }
+.block { padding-block: 56px; --h2-size: clamp(23px, 3vw, 29px); }
 .block + .block { border-top: 1px solid var(--border); }
 .block h2 {
-  font-size: clamp(23px, 3vw, 29px);
+  font-size: var(--h2-size);
   font-weight: 700;
 }
 .block .intro {
@@ -114,6 +120,52 @@ main > .block:first-child > .wrap > :first-child { margin-top: 0; text-box: trim
 }
 .block .intro p { margin: 0; }
 .block .intro p + p { margin-top: 12px; }
+
+/* Heading with a small two-line label at the right edge of the row, sized to sit
+   exactly in the heading's cap height: bottom line on the heading's baseline,
+   top line's caps level with the heading's.
+
+   `last baseline` puts the label's second line on the heading's baseline. Its
+   first line's cap top then sits (line-height + the label's own cap height)
+   above that baseline, so the two lines span the heading's cap height when
+   line-height is the heading's cap height minus the label's.
+
+   --heading-cap has to be registered: a plain custom property would hand the
+   label the token `1cap`, which it would resolve in its own font, not in the
+   heading's. Registered as a <length>, it resolves here, where the font and
+   size are the heading's. */
+@property --heading-cap {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0px;
+}
+.section-head {
+  display: flex;
+  align-items: baseline;
+  align-items: last baseline;
+  justify-content: space-between;
+  gap: 18px;
+  font-family: var(--display);
+  font-size: var(--h2-size);
+  --heading-cap: 1cap;
+}
+.stacked-link {
+  flex-shrink: 0;
+  font-family: var(--body);
+  /* Both lines have to fit inside that cap height, which Baloo 2 makes small
+     (0.602em, vs 0.698em for the label's own font): 0.33em leaves the two rows
+     of caps about 4px apart at the largest heading size. Raising it closes that
+     gap — at 0.38em the lines nearly touch. */
+  font-size: 0.33em;
+  font-weight: 700;
+  line-height: 0.95;
+  line-height: calc(var(--heading-cap) - 1cap);
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  text-align: center;
+  text-decoration: none;
+}
+.stacked-link:hover { text-decoration: underline; }
 
 /* ---------- Icons ---------- */
 /* Tabler Icons v3.47.0 (MIT), https://tabler.io/icons. Each SVG is stored as a
