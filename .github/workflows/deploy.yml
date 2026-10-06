@@ -3,10 +3,14 @@ name: Deploy to GitHub Pages
 on:
   push:
     branches: [main]
-  # Rebuild daily so events move from Upcoming to Past on their own. Cron is UTC
-  # only: 13:00 UTC is 6am Pacific in summer, 5am in winter.
+  # Rebuild daily so events move from Upcoming to Past on their own. Runs twice
+  # so one failed or dropped scheduled run doesn't skip a day, and off the hour
+  # because GitHub is most likely to delay or drop runs scheduled at :00. Cron
+  # is UTC only: 12:23 and 15:41 UTC are about 5am and 8:40am Pacific in summer,
+  # an hour earlier in winter.
   schedule:
-    - cron: "0 13 * * *"
+    - cron: "23 12 * * *"
+    - cron: "41 15 * * *"
   workflow_dispatch:
 
 permissions:
